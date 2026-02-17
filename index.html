@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚗 环游中国 | 房车日记</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .header h1 { font-size: 28px; margin-bottom: 10px; }
+        .header .subtitle { font-size: 16px; opacity: 0.9; }
+        .vehicle { font-size: 48px; margin-bottom: 15px; }
+        
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .stat-value { font-size: 24px; font-weight: bold; color: #e94560; }
+        .stat-label { font-size: 12px; opacity: 0.8; margin-top: 5px; }
+        
+        /* Trip Info */
+        .trip-info {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+        .location { font-size: 20px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .location-icon { font-size: 28px; }
+        
+        /* Timeline */
+        .timeline { position: relative; padding-left: 30px; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #e94560, #0f3460);
+        }
+        
+        .day-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        .day-card::before {
+            content: '🚗';
+            position: absolute;
+            left: -35px;
+            top: 20px;
+            font-size: 20px;
+        }
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .day-number { font-size: 14px; color: #e94560; font-weight: bold; }
+        .day-date { font-size: 12px; opacity: 0.7; }
+        .day-title { font-size: 18px; margin-bottom: 10px; }
+        .day-content { font-size: 14px; line-height: 1.8; opacity: 0.9; }
+        .day-content p { margin-bottom: 10px; }
+        
+        .photos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .photo-placeholder {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            font-size: 30px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            opacity: 0.6;
+            font-size: 12px;
+        }
+        
+        /* Mobile */
+        @media (max-width: 600px) {
+            .header h1 { font-size: 22px; }
+            .stats { grid-template-columns: 1fr; }
+            .vehicle { font-size: 36px; }
+            .container { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="vehicle">🚗 🏍️ 🌟</div>
+            <h1>环游中国</h1>
+            <div class="subtitle">房车 + 摩托车 | 象山出发 · 自由行</div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="dayCount">1</div>
+                <div class="stat-label">天数</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="locationCount">1</div>
+                <div class="stat-label">地点</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="kmCount">0</div>
+                <div class="stat-label">公里</div>
+            </div>
+        </div>
+        
+        <div class="trip-info">
+            <div class="location">
+                <span class="location-icon">📍</span>
+                <span>当前所在：<strong id="currentLocation">宁波象山</strong></span>
+            </div>
+            <div style="opacity: 0.8; line-height: 1.8;">
+                <p>🚗 交通工具：房车 + 摩托车</p>
+                <p>📅 出发日期：2026年2月17日</p>
+                <p>🎯 旅行方式：自由行</p>
+            </div>
+        </div>
+        
+        <h2 style="margin-bottom: 20px; font-size: 20px;">📓 行程日记</h2>
+        
+        <div class="timeline">
+            <div class="day-card">
+                <div class="day-header">
+                    <span class="day-number">第1天</span>
+                    <span class="day-date">2026-02-17</span>
+                </div>
+                <div class="day-title">🌊 象山出发</div>
+                <div class="day-content">
+                    <p>今天从宁波象山正式出发！</p>
+                    <p>象山是一个美丽的海滨城市，有着丰富的海鲜和迷人的海岸线。</p>
+                    <p>早上在象山县城准备了一些生活物资，检查了房车和摩托车的状态。下午在海边走了走，感受了一下海风的味道。</p>
+                    <p>明天开始正式的环游之旅！</p>
+                </div>
+                <div class="photos">
+                    <div class="photo-placeholder">🌊</div>
+                    <div class="photo-placeholder">🏖️</div>
+                    <div class="photo-placeholder">🚗</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🚗 环游中国 · 房车日记</p>
+            <p>记录每一天的所见所闻</p>
+        </div>
+    </div>
+</body>
+</html>
