@@ -14,7 +14,6 @@
         }
         .container { max-width: 800px; margin: 0 auto; padding: 20px; }
         
-        /* Header */
         .header {
             text-align: center;
             padding: 40px 20px;
@@ -27,7 +26,6 @@
         .header .subtitle { font-size: 16px; opacity: 0.9; }
         .vehicle { font-size: 48px; margin-bottom: 15px; }
         
-        /* Stats */
         .stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -44,7 +42,6 @@
         .stat-value { font-size: 24px; font-weight: bold; color: #e94560; }
         .stat-label { font-size: 12px; opacity: 0.8; margin-top: 5px; }
         
-        /* Trip Info */
         .trip-info {
             background: rgba(255,255,255,0.1);
             border-radius: 20px;
@@ -55,7 +52,6 @@
         .location { font-size: 20px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
         .location-icon { font-size: 28px; }
         
-        /* Timeline */
         .timeline { position: relative; padding-left: 30px; }
         .timeline::before {
             content: '';
@@ -110,7 +106,6 @@
             font-size: 30px;
         }
         
-        /* Footer */
         .footer {
             text-align: center;
             padding: 30px;
@@ -118,7 +113,6 @@
             font-size: 12px;
         }
         
-        /* Mobile */
         @media (max-width: 600px) {
             .header h1 { font-size: 22px; }
             .stats { grid-template-columns: 1fr; }
@@ -137,15 +131,15 @@
         
         <div class="stats">
             <div class="stat-item">
-                <div class="stat-value" id="dayCount">5</div>
+                <div class="stat-value" id="dayCount">6</div>
                 <div class="stat-label">天数</div>
             </div>
             <div class="stat-item">
-                <div class="stat-value" id="locationCount">5</div>
+                <div class="stat-value" id="locationCount">7</div>
                 <div class="stat-label">地点</div>
             </div>
             <div class="stat-item">
-                <div class="stat-value" id="kmCount">220</div>
+                <div class="stat-value" id="kmCount">280</div>
                 <div class="stat-label">公里</div>
             </div>
         </div>
@@ -153,7 +147,7 @@
         <div class="trip-info">
             <div class="location">
                 <span class="location-icon">📍</span>
-                <span>当前所在：<strong id="currentLocation">宁波家中</strong></span>
+                <span>当前所在：<strong id="currentLocation">宁波</strong></span>
             </div>
             <div style="opacity: 0.8; line-height: 1.8;">
                 <p>🚗 交通工具：房车 + 摩托车</p>
@@ -167,19 +161,41 @@
         <div class="timeline">
             <div class="day-card">
                 <div class="day-header">
-                    <span class="day-number">第5天</span>
-                    </div>
-                <div class="day-title">🧧 破五迎财神</div>
+                    <span class="day-number">第6天</span>
+                    <span class="day-date">2026-02-22 · 正月初六</span>
+                </div>
+                <div class="day-title">🗑️ 送穷日 · 商家开市</div>
                 <div class="day-content">
-                    <p>今天是正月初五，"破五"迎财神的日子！</p>
-                    <p>🧧 习俗：迎财神、破五、送穷、吃饺子</p>
-                    <p>早上放鞭炮迎财神，祈求新一年财运亨通！</p>
-                    <p>过了破五，年也差不多过完了，该收心准备工作了。</p>
+                    <p>今天是正月初六，传统"送穷日"！</p>
+                    <p>🗑️ 习俗：送穷出门、商家开市、挹肥、出海</p>
+                    <p>在宁波市区逛了一天，感受初六年味。</p>
+                    <p>很多店铺今天都开门了，街道渐渐恢复了往日的热闹。</p>
+                    <p>虽然还没正式上班，但也要开始收心，为新一年做准备了。</p>
                 </div>
                 <div class="photos">
-                    <div class="photo-placeholder">🧧</div>
-                    <div class="photo-placeholder">🎆</div>
-                    <div class="photo-placeholder">🥟</div>
+                    <div class="photo-placeholder">🗑️</div>
+                    <div class="photo-placeholder">🏪</div>
+                    <div class="photo-placeholder">⚓</div>
+                </div>
+            </div>
+            
+            <div class="day-card">
+                <div class="day-header">
+                    <span class="day-number">第5天</span>
+                    <span class="day-date">2026-02-21 · 正月初五</span>
+                </div>
+                <div class="day-title">🛒 石浦逛街 · 破五迎财神</div>
+                <div class="day-content">
+                    <p>今天是正月初五，传统"破五"迎财神的日子！</p>
+                    <p>🧧 习俗：迎财神、破五、送穷、吃饺子</p>
+                    <p>来到石浦古镇逛街，买了些当地特产和日用品。</p>
+                    <p>石浦是个很有味道的小镇，海鲜新鲜，物价实惠。</p>
+                    <p>感受着过年的热闹气氛，顺便为接下来的旅程补充物资。</p>
+                </div>
+                <div class="photos">
+                    <div class="photo-placeholder">🛍️</div>
+                    <div class="photo-placeholder">🏮</div>
+                    <div class="photo-placeholder">🐟</div>
                 </div>
             </div>
             
