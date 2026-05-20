@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Search for multiple travel destinations and save results"""
+"""Search for upcoming destinations"""
 import json
 import sys
 import codecs
@@ -10,11 +10,10 @@ sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer)
 script = 'C:/Users/admin/.openclaw/workspace/skills/duckduckgo-search/scripts/search.py'
 
 destinations = [
-    '苏州旅游攻略 2026年3月 拙政园 平江路',
-    '扬州旅游攻略 2026年3月 烟花三月',
-    '南京旅游攻略 2026年3月 中山陵 夫子庙',
-    '黄山旅游攻略 2026年3月 宏村西递',
-    '无锡灵山拈花湾旅游攻略 2026年春季',
+    '杭州西湖旅游攻略 2026年3月 春季',
+    '上海旅游攻略 2026年3月',
+    '乌镇旅游攻略 2026年春季',
+    '黄山宏村西递旅游攻略 2026年3月',
 ]
 
 all_results = {}
@@ -32,7 +31,7 @@ for query in destinations:
             data = json.loads(result.stdout)
             titles = [r['title'] for r in data.get('results', [])]
             print(f'=== {query} ===')
-            for i, t in enumerate(titles):
+            for i, t in enumerate(titles[:5]):
                 print(f'{i+1}. {t}')
             print()
             all_results[query] = titles
@@ -43,8 +42,10 @@ for query in destinations:
         print(f'Exception for {query}: {e}')
         all_results[query] = []
 
-# Save results
+# Save with updated timestamp
+all_results['updated'] = '2026-03-30'
+
 output_path = 'C:/Users/admin/.openclaw/workspace/china-trip/search_results_latest.json'
 with open(output_path, 'w', encoding='utf-8') as f:
     json.dump(all_results, f, ensure_ascii=False, indent=2)
-print(f'Saved {len(all_results)} destination results to {output_path}')
+print(f'\nSaved results to {output_path}')
