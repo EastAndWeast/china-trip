@@ -1,21 +1,31 @@
 # -*- coding: utf-8 -*-
-import sys, re
-sys.stdout.reconfigure(encoding='utf-8')
-with open('C:/Users/admin/.openclaw/workspace/china-trip/index.html', 'r', encoding='utf-8') as f:
+import re
+
+HTML_PATH = 'C:/Users/admin/.openclaw/workspace/china-trip/index.html'
+
+with open(HTML_PATH, 'r', encoding='utf-8') as f:
     content = f.read()
 
-loc_match = re.search(r'id="currentLocation"[^>]*>([^<]+)<', content)
-if loc_match:
-    print('Location:', loc_match.group(1))
-
+# Find current stats
 day_match = re.search(r'id="dayCount"[^>]*>(\d+)<', content)
-if day_match:
-    print('Day count:', day_match.group(1))
-
 km_match = re.search(r'id="kmCount"[^>]*>(\d+)<', content)
-if km_match:
-    print('KM:', km_match.group(1))
+loc_match = re.search(r'id="locationCount"[^>]*>(\d+)<', content)
+cur_match = re.search(r'id="currentLocation"[^>]*>([^<]+)<', content)
 
-date_match = re.findall(r'class="day-date">(\d{4}-\d{2}-\d{2})', content)
-if date_match:
-    print('Last dates:', date_match[-3:])
+print(f"Current dayCount: {day_match.group(1) if day_match else 'not found'}")
+print(f"Current kmCount: {km_match.group(1) if km_match else 'not found'}")
+print(f"Current locationCount: {loc_match.group(1) if loc_match else 'not found'}")
+print(f"Current location: {cur_match.group(1) if cur_match else 'not found'}")
+
+# Find latest day
+day_nums = re.findall(r'class="day-number">(\d+)<', content)
+print(f"Last day numbers: {day_nums[-5:] if day_nums else 'none'}")
+
+# Find dates
+dates = re.findall(r'<span class="day-date">(\d{4}-\d{2}-\d{2})', content)
+print(f"Last dates: {dates[-5:] if dates else 'none'}")
+
+# Find current location in stats
+current = re.search(r'id="currentLocation"[^>]*>([^<]+)<', content)
+if current:
+    print(f"Current location: {current.group(1)}")
