@@ -1,0 +1,35 @@
+{
+  "query": "南昌旅游攻略 2026 滕王阁 万寿宫 江西省博物馆 庐山",
+  "search_date": "2026-05-26",
+  "day": 98,
+  "results": [
+    {
+      "title": "江西南昌滕王阁五日游必打卡景点",
+      "source": "163.com",
+      "published": "2 weeks ago",
+      "key_info": "滕王阁夜间亮灯时间约18:30-22:00，万寿宫、八一起义纪念馆均免费"
+    },
+    {
+      "title": "2026年5月江西南昌纯玩靠谱导游",
+      "source": "sina.com.cn",
+      "published": "2 weeks ago",
+      "key_info": "Day2: 南昌 - 江西省博物馆 - 秋水广场 - 滕王阁"
+    },
+    {
+      "title": "南昌长辈专属导游慢节奏讲解",
+      "source": "cnblogs.com",
+      "published": "1 week ago",
+      "key_info": "Day1: 八一广场 - 八一起义纪念馆 - 万寿宫历史文化街区，慢逛老城老街"
+    }
+  ],
+  "update_summary": {
+    "day_added": 98,
+    "location": "南昌 · 万寿宫历史文化街区",
+    "next_destination": "庐山",
+    "stats": {
+      "day_count": 98,
+      "km_count": 13440,
+      "location_count": 70
+    }
+  }
+}
