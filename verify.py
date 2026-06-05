@@ -1,24 +1,13 @@
 # -*- coding: utf-8 -*-
 import re
-
-f = open(r'C:\Users\admin\.openclaw\workspace\china-trip\index.html', 'r', encoding='utf-8')
-content = f.read()
-f.close()
-
-# 提取关键数据
-day = re.search(r'id="dayCount">(\d+)', content)
-loc = re.search(r'id="locationCount">(\d+)', content)
-km = re.search(r'id="kmCount">(\d+)', content)
-current = re.search(r'id="currentLocation">([^<]+)', content)
-
-print('更新后的数据:')
-print(f'天数: {day.group(1)}')
-print(f'地点: {loc.group(1)}')
-print(f'公里: {km.group(1)}')
-print(f'当前位置: {current.group(1)}')
-
-# 检查第13天是否存在
-if '第13天' in content:
-    print('\n✓ 第13天行程已添加')
-else:
-    print('\n✗ 第13天行程未找到')
+with open('index.html', 'r', encoding='utf-8') as f:
+    c = f.read()
+# Search all day-number patterns
+m1 = re.findall(r'class="day-number">(\d+)<', c)
+print('Numeric style:', len(m1), 'matches, first 5:', m1[:5], 'last 5:', m1[-5:])
+# Also look for 第N天 style
+day_cn = re.findall(r'第(\d+)天', c)
+print('第N天 style:', len(day_cn), 'matches, last 5:', day_cn[-5:] if day_cn else 'none')
+# day-cards
+cards = re.findall(r'class="day-card"', c)
+print('Total day-card divs:', len(cards))

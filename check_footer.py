@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
-import re
-import sys
-import codecs
-
+import sys, codecs, re
 sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer)
-
-with open('C:/Users/admin/.openclaw/workspace/china-trip/index.html', 'r', encoding='utf-8') as f:
-    content = f.read()
-
-# Find footer
-start = content.find('<div class="footer">')
-print('Footer starts at:', start)
-footer_excerpt = content[start:start+1200]
-print(footer_excerpt)
+with open('index.html', 'r', encoding='utf-8') as f:
+    c = f.read()
+# Find footer div
+m = re.search(r'<div class="footer">(.*?)$', c, re.DOTALL)
+if m:
+    text = m.group(1)
+    print(text[:3000])
