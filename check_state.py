@@ -1,22 +1,17 @@
 # -*- coding: utf-8 -*-
 import re
-with open('index.html', 'r', encoding='utf-8') as f:
+with open('index.html','r',encoding='utf-8') as f:
     c = f.read()
-day_nums = re.findall(r'class="day-number">(\d+)<', c)
-print('Last 5 day numbers:', day_nums[-5:] if day_nums else 'none')
-day_match = re.search(r'id="dayCount"[^>]*>(\d+)<', c)
-km_match = re.search(r'id="kmCount"[^>]*>(\d+)<', c)
-loc_match = re.search(r'id="locationCount"[^>]*>(\d+)<', c)
-cur_match = re.search(r'id="currentLocation"[^>]*>([^<]+)<', c)
-print('Stats: dayCount=%s, kmCount=%s, locationCount=%s, location=%s' % (
-    day_match.group(1) if day_match else '?',
-    km_match.group(1) if km_match else '?',
-    loc_match.group(1) if loc_match else '?',
-    cur_match.group(1) if cur_match else '?'
-))
-# Find footer tips
-footer_match = re.search(r'<div class="footer">(.*?)(?=</body>|</html>|$)', c, re.DOTALL)
-if footer_match:
-    text = re.sub(r'<[^>]+>', '', footer_match.group(1))
-    text = re.sub(r'\s+', ' ', text)
-    print('Footer text (last 500 chars):', text[-500:])
+day = re.search(r'id="dayCount"[^>]*>(\d+)<', c)
+km = re.search(r'id="kmCount"[^>]*>(\d+)<', c)
+loc = re.search(r'id="locationCount"[^>]*>(\d+)<', c)
+cur = re.search(r'id="currentLocation"[^>]*>([^<]+)<', c)
+days = re.findall(r'<div class="day-card">\s*<div class="day-header">\s*<span class="day-number">(\d+)</span>\s*<span class="day-date">([^<]+)</span>', c, re.DOTALL)
+print('dayCount:', day.group(1) if day else '?')
+print('kmCount:', km.group(1) if km else '?')
+print('locationCount:', loc.group(1) if loc else '?')
+print('currentLocation:', cur.group(1) if cur else '?')
+print('Total day cards:', len(days))
+print('Last 3 days:')
+for d in days[-3:]:
+    print(' ', d[0], '|', d[1].strip())
